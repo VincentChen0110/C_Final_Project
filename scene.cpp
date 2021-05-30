@@ -14,8 +14,8 @@ void menu_process(ALLEGRO_EVENT event){
 }
 void menu_draw(){
     al_clear_to_color(al_map_rgb(100,100,100));
-    al_draw_text(font, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2+220 , ALLEGRO_ALIGN_CENTRE, "Press 'Enter' to start");
-    al_draw_rectangle(WIDTH/2-150, 510, WIDTH/2+150, 550, al_map_rgb(255, 255, 255), 0);
+    al_draw_text(font, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2 , ALLEGRO_ALIGN_CENTRE, "Press 'Enter' to start");
+    al_draw_rectangle(WIDTH/2-150, 210, WIDTH/2+150, 210, al_map_rgb(255, 255, 255), 0);
 }
 void menu_destroy(){
     al_destroy_font(font);
@@ -24,7 +24,7 @@ void menu_destroy(){
 // function of game_scene
 void game_scene_init(){
     character_init();
-    background = al_load_bitmap("./image/stage.jpg");
+    background = al_load_bitmap("./image/stage1.png");
 }
 void game_scene_draw(){
     al_draw_bitmap(background, 0, 0, 0);

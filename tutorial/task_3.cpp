@@ -21,6 +21,8 @@ ALLEGRO_DISPLAY* display = NULL;
 /*
  * TODO: Declare your event_queue and event.
  */
+ALLEGEO_EVENT_QUEUE *event_queue = NULL;
+ALLEGRO_EVENT event;
 
 const int width = 800;
 const int height = 600;
@@ -69,6 +71,8 @@ void game_init() {
     /*
      * TODO: initial display and event queue, and register specific event into event queue.
      */
+     event_queue = al_create_event_queue();
+     al_register_event_source(event_queue, al_get_keyboard_event_source(display));
 }
 
 void game_begin() {
@@ -82,16 +86,26 @@ int process_event() {
      *       If so, return GAME_TERMINATE.
      * Hint: using event.type == ALLEGRO_EVENT_DISPLAY_CLOSE to judge whether the display is closed just now.
      */
+     al_wait_for_event(event_queue,&event);
+     if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+        return GAME_TERMINATE;
+
 }
 
 int game_run() {
     /*
      * TODO: Judge whether there's any event in the queue; if so, call process_event() to process it.
      */
+     int error = 1;
+     if(!al_event_queue_is_empty(event_queue)){
+        error = process_event();
+     }
+     return error;
 }
 
 void game_destroy() {
     /*
      * TODO: Destroy all thing you have created.
      */
+     al_destroy_event_queue(event_queue);
 }

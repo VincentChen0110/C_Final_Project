@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1621834427 source:d:\c_programming\i2p1_final_project-master\charater.cpp
+1622373866 source:d:\c_programming\i2p1_final_project-master\charater.cpp
 	"charater.h"
 
 1621834427 d:\c_programming\i2p1_final_project-master\charater.h
@@ -328,12 +328,12 @@
 	"global.h"
 	"charater.h"
 
-1621834427 source:d:\c_programming\i2p1_final_project-master\global.cpp
+1622366288 source:d:\c_programming\i2p1_final_project-master\global.cpp
 	"global.h"
 
 1621834427 source:d:\c_programming\i2p1_final_project-master\main.cpp
 	"GameWindow.h"
 
-1621834427 source:d:\c_programming\i2p1_final_project-master\scene.cpp
+1622366244 source:d:\c_programming\i2p1_final_project-master\scene.cpp
 	"scene.h"
 

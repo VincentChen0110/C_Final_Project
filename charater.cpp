@@ -8,8 +8,8 @@ typedef struct character
     int width, height; // the width and height of image
     bool dir; // left: false, right: true
     int state; // the state of character
-    ALLEGRO_BITMAP *img_move[2];
-    ALLEGRO_BITMAP *img_atk[2];
+    ALLEGRO_BITMAP *img_move[3];
+    ALLEGRO_BITMAP *img_atk[3];
     ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
     int anime; // counting the time of animation
     int anime_time; // indicate how long the animation
@@ -18,14 +18,16 @@ Character chara;
 ALLEGRO_SAMPLE *sample = NULL;
 void character_init(){
     // load character images
-    for(int i = 1 ; i <= 2 ; i++){
+    for(int i = 2 ; i <= 4 ; i++){
         char temp[50];
-        sprintf( temp, "./image/char_move%d.png", i );
-        chara.img_move[i-1] = al_load_bitmap(temp);
+        //sprintf( temp, "./image/char_move%d.png", i );
+        sprintf( temp, "./image/gunman%d.png", i );
+        //chara.img_move[i-1] = al_load_bitmap(temp);
+        chara.img_move[i-2] = al_load_bitmap(temp);
     }
-    for(int i = 1 ; i <= 2 ; i++){
+    for(int i = 1 ; i <= 3 ; i++){
         char temp[50];
-        sprintf( temp, "./image/char_atk%d.png", i );
+        sprintf( temp, "./image/shoot%d.png", i );
         chara.img_atk[i-1] = al_load_bitmap(temp);
     }
     // load effective sound
@@ -64,7 +66,7 @@ void charater_process(ALLEGRO_EVENT event){
 }
 void charater_update(){
     // use the idea of finite state machine to deal with different state
-    if( key_state[ALLEGRO_KEY_W] ){
+    if( key_state[ALLEGRO_KEY_W]){
         chara.y -= 5;
         chara.state = MOVE;
     }else if( key_state[ALLEGRO_KEY_A] ){
@@ -96,31 +98,43 @@ void character_draw(){
             al_draw_bitmap(chara.img_move[0], chara.x, chara.y, 0);
     }else if( chara.state == MOVE ){
         if( chara.dir ){
-            if( chara.anime < chara.anime_time/2 ){
+            if( chara.anime < chara.anime_time/3 ){
                 al_draw_bitmap(chara.img_move[0], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
-            }else{
+            }else if( chara.anime < chara.anime_time*2/3 && chara.anime >= chara.anime_time*1/3){
                 al_draw_bitmap(chara.img_move[1], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
             }
+            else{
+                al_draw_bitmap(chara.img_move[2], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
+            }
         }else{
-            if( chara.anime < chara.anime_time/2 ){
+            if( chara.anime < chara.anime_time/3 ){
                 al_draw_bitmap(chara.img_move[0], chara.x, chara.y, 0);
-            }else{
-                al_draw_bitmap(chara.img_move[1], chara.x, chara.y, 0);
+            }else if( chara.anime < chara.anime_time*2/3 && chara.anime >= chara.anime_time*1/3){
+                al_draw_bitmap(chara.img_move[1], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
+            }
+            else{
+                al_draw_bitmap(chara.img_move[2], chara.x, chara.y, 0);
             }
         }
     }else if( chara.state == ATK ){
         if( chara.dir ){
-            if( chara.anime < chara.anime_time/2 ){
+            if( chara.anime < chara.anime_time/3 ){
                 al_draw_bitmap(chara.img_atk[0], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
-            }else{
+            }else if( chara.anime < chara.anime_time*2/3 && chara.anime >= chara.anime_time*1/3){
                 al_draw_bitmap(chara.img_atk[1], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
+            }
+            else{
+                al_draw_bitmap(chara.img_atk[2], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
                 al_play_sample_instance(chara.atk_Sound);
             }
         }else{
-            if( chara.anime < chara.anime_time/2 ){
+            if( chara.anime < chara.anime_time/3 ){
                 al_draw_bitmap(chara.img_atk[0], chara.x, chara.y, 0);
-            }else{
+            }else if( chara.anime < chara.anime_time*2/3 && chara.anime >= chara.anime_time*1/3){
                 al_draw_bitmap(chara.img_atk[1], chara.x, chara.y, 0);
+            }
+            else{
+                al_draw_bitmap(chara.img_atk[2], chara.x, chara.y, 0);
                 al_play_sample_instance(chara.atk_Sound);
             }
         }
@@ -129,7 +143,9 @@ void character_draw(){
 void character_destory(){
     al_destroy_bitmap(chara.img_atk[0]);
     al_destroy_bitmap(chara.img_atk[1]);
+    al_destroy_bitmap(chara.img_atk[2]);
     al_destroy_bitmap(chara.img_move[0]);
     al_destroy_bitmap(chara.img_move[1]);
+    al_destroy_bitmap(chara.img_atk[2]);
     al_destroy_sample_instance(chara.atk_Sound);
 }

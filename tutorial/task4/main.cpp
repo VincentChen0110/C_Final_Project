@@ -36,7 +36,7 @@ void game_destroy();
 /*
     You can declare some variables here if it is useful for you.
 */
-
+bool key_state[ALLEGRO_KEY_MAX];
 
 int main(int argc, char *argv[]) {
     int msg = 0;
@@ -79,9 +79,8 @@ void game_init() {
     /*
         TODO: Something need to be created, initialized and registered.
     */
-    event_queue = al_create_event_queue();
     al_install_keyboard();
-    al_register_event_source(event_queue, al_get_keyboard_event_source());
+    al_register_event_source(event_queue,al_get_keyboard_event_source());
 }
 
 void game_begin() {
@@ -90,13 +89,40 @@ void game_begin() {
     al_flip_display();
 }
 
+int keyboard_event(){
+    if(event.type =  ALLEGRO_EVENT_KEY_DOWN){
+        key_state[event.keyboard.keycode] = true;
+    }
+    else if(event.type =  ALLEGRO_EVENT_KEY_UP){
+        key_state[event.keyboard.keycode] = false;
+    }
+    return 0;
+}
+
+int game_update(){
+    if(key_state[ALLEGRO_KEY_W]){
+        pos_y -= 10;
+    }
+    else if(key_state[ALLEGRO_KEY_A]){
+        pos_x -= 10;
+    }
+    else if(key_state[ALLEGRO_KEY_S]){
+        pos_y += 10;
+    }
+    else if(key_state[ALLEGRO_KEY_D]){
+        pos_x += 10;
+    }
+    return 0;
+}
+
 int process_event() {
     al_wait_for_event(event_queue, &event);
     /*
         TODO: Process the mouse event.
         Seperate the processing fo click event and moving event is encouraged.
     */
-
+    keyboard_event();
+    game_update();
     al_flip_display();
     al_clear_to_color(al_map_rgb(0,0,0));
     return 0;
