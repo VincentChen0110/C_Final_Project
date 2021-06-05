@@ -87,6 +87,7 @@ void game_update(){
     }
     if( window == 2 ){
         charater_update();
+        game_scene_update();
     }
 }
 int process_event(){

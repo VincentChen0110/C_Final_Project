@@ -39,8 +39,8 @@ void character_init(){
     // initial the geometric information of character
     chara.width = al_get_bitmap_width(chara.img_move[0]);
     chara.height = al_get_bitmap_height(chara.img_move[0]);
-    chara.x = WIDTH/2;
-    chara.y = HEIGHT/2;
+    chara.x = 0;
+    chara.y = 150;
     chara.dir = false;
 
     // initial the animation component
