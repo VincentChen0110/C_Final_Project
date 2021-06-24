@@ -1,11 +1,10 @@
 #include "scene.h"
-#include "charater.h"
 #include <stdio.h>
 ALLEGRO_FONT *font = NULL;
 ALLEGRO_BITMAP *background = NULL;
 
 int x;
-int y ;
+int y;
 // function of menu
 void menu_init(){
     font = al_load_ttf_font("./font/pirulen.ttf",12,0);
@@ -36,7 +35,7 @@ void game_scene_draw(){
     al_flip_display();
 }
 void game_scene_update(){
-    if (x>=-1200&&key_state[ALLEGRO_KEY_D]) x -=6,printf("%d\n",x) ;
+    if (x>=-1200&&key_state[ALLEGRO_KEY_D]) x -=6;
     if (x<=0&&key_state[ALLEGRO_KEY_A]) x+=6;
 }
 void game_scene_destroy(){

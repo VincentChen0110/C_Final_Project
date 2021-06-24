@@ -39,6 +39,8 @@
 		</Compiler>
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
+		<Unit filename="bullet.cpp" />
+		<Unit filename="bullet.h" />
 		<Unit filename="charater.cpp" />
 		<Unit filename="charater.h" />
 		<Unit filename="global.cpp" />
