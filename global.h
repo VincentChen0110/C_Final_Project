@@ -16,6 +16,12 @@ extern const int WIDTH;
 extern const int HEIGHT;
 extern bool key_state[ALLEGRO_KEY_MAX];
 extern bool judge_next_window;
+extern bool judge_game_end;
+extern bool end_game;
+extern bool to_menu;
+extern bool to_inst;
 extern ALLEGRO_EVENT_QUEUE *event_queue;
 extern ALLEGRO_TIMER *fps;
+extern ALLEGRO_FONT *font;
+extern int score;
 #endif

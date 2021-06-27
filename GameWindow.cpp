@@ -2,8 +2,7 @@
 
 bool draw = false;
 int window = 1;
-
-const char *title = "Final Project 10xxxxxxx";
+const char *title = "Final Project 106022113";
 
 // ALLEGRO Variables
 ALLEGRO_DISPLAY* display = NULL;
@@ -16,9 +15,9 @@ int Game_establish() {
     game_init();
     game_begin();
 
-    while ( msg != GAME_TERMINATE ) {
+    while ( msg != GAME_TERMINATE && !end_game ) {
         msg = game_run();
-        if ( msg == GAME_TERMINATE )
+        if ( msg == GAME_TERMINATE || end_game )
             printf( "Game Over\n" );
     }
 
@@ -78,7 +77,7 @@ void game_update(){
     if( judge_next_window ){
         if( window == 1 ){
             // not back menu anymore, therefore destroy it
-            menu_destroy();
+            //menu_destroy();
             // initialize next scene
             game_scene_init();
             judge_next_window = false;
@@ -88,6 +87,38 @@ void game_update(){
     if( window == 2 ){
         charater_update();
         game_scene_update();
+    }
+    if(judge_game_end){
+       window = 3;
+       //game_scene_destroy();
+       gg_init();
+       if(judge_next_window){
+            game_scene_init();
+            window = 2;
+            judge_game_end = false;
+            judge_next_window = false;
+       }
+       if(to_menu){
+        window = 1;
+        menu_init();
+        to_menu = false;
+        judge_game_end = false;
+        judge_next_window = false;
+       }
+    }
+    if(to_inst){
+        window = 4;
+        inst_init();
+        to_inst = false;
+        judge_game_end = false;
+        judge_next_window = false;
+    }
+    if(to_menu){
+        window = 1;
+        menu_init();
+        to_menu = false;
+        judge_game_end = false;
+        judge_next_window = false;
     }
 }
 int process_event(){
@@ -99,6 +130,10 @@ int process_event(){
         menu_process(event);
     }else if( window == 2 ){
         charater_process(event);
+    }else if(window == 3){
+        gg_process(event);
+    }else if(window == 4){
+        inst_process(event);
     }
 
     // Shutdown our program
@@ -115,6 +150,12 @@ void game_draw(){
         menu_draw();
     }else if( window == 2 ){
         game_scene_draw();
+    }
+    else if( window == 3 ){
+        gg_draw();
+    }
+    else if( window == 4 ){
+        inst_draw();
     }
     al_flip_display();
 }
@@ -135,4 +176,7 @@ void game_destroy() {
     al_destroy_event_queue(event_queue);
     al_destroy_display(display);
     game_scene_destroy();
+    menu_destroy();
+    gg_destroy();
+    inst_destroy();
 }
