@@ -1,15 +1,19 @@
-# I2P1_Final_project
-Introduction to programming 1 final project
-## Rules
-- You can only use C language to do this project, otherwise you will get 0 point.
-  Any C++ header file is not allow.
-- Plagiarism is strictly not allowed
+# C Game Project
+Metal Slug style shooting game
+## Requirements
+Allegro5 needs to be installed
 
-## Resource
+## Instructions
+```make``` if on mac,
+build if on windows
 
-- Allegro download: [https ://github.com/liballeg/allegro5/releases](https://github.com/liballeg/allegro5/releases)
+## GamePlay
+5 stages with Final Boss 
+Shooting random soilders 
+### Keyboard
+Move: WSAD,
+Duck: X,
+Bomb: B,
+Change Gun: up, down,
+Knife: Enter
 
-- Allegro install(mac): https://hackmd.io/@kerwintsai/SkRTk6kCS
-- Allegro install(Windows):  https://github.com/yuan7122/I2P1_Final_project/blob/master/tutorial/Allegro_install.pdf
-- Allegro documentation: https://liballeg.org/a5docs/trunk/
-- For more information refer to [tutorial folder](https://github.com/yuan7122/I2P1_Final_project/tree/master/tutorial)
