@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1624798920 source:d:\c_programming\i2p1_final_project-master\charater.cpp
+1624950120 source:d:\c_programming\i2p1_final_project-master\charater.cpp
 	"charater.h"
 
 1621834427 d:\c_programming\i2p1_final_project-master\charater.h
 	"global.h"
 
-1624793954 d:\c_programming\i2p1_final_project-master\global.h
+1624946446 d:\c_programming\i2p1_final_project-master\global.h
 	<stdio.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_primitives.h>
@@ -316,7 +316,7 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1624793954 source:d:\c_programming\i2p1_final_project-master\gamewindow.cpp
+1624946152 source:d:\c_programming\i2p1_final_project-master\gamewindow.cpp
 	"GameWindow.h"
 
 1621834427 d:\c_programming\i2p1_final_project-master\gamewindow.h
@@ -328,13 +328,13 @@
 	"global.h"
 	"charater.h"
 
-1624793954 source:d:\c_programming\i2p1_final_project-master\global.cpp
+1624874346 source:d:\c_programming\i2p1_final_project-master\global.cpp
 	"global.h"
 
 1621834427 source:d:\c_programming\i2p1_final_project-master\main.cpp
 	"GameWindow.h"
 
-1624795857 source:d:\c_programming\i2p1_final_project-master\scene.cpp
+1624946446 source:d:\c_programming\i2p1_final_project-master\scene.cpp
 	"scene.h"
 	<stdio.h>
 

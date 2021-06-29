@@ -3,9 +3,13 @@
 ALLEGRO_BITMAP *background = NULL;
 int x;
 int y;
+ALLEGRO_BITMAP *back_menu;
 // function of menu
 void menu_init(){
     font = al_load_ttf_font("./font/pirulen.ttf",30,0);
+    char temp[50];
+    sprintf( temp, "./image/intro%d.png",1 );
+    back_menu = al_load_bitmap(temp);
 }
 void menu_process(ALLEGRO_EVENT event){
     if( event.type == ALLEGRO_EVENT_KEY_UP )
@@ -13,11 +17,13 @@ void menu_process(ALLEGRO_EVENT event){
             judge_next_window = true;
         if( event.keyboard.keycode == ALLEGRO_KEY_ESCAPE )
             end_game = true;
-        if( event.keyboard.keycode == ALLEGRO_KEY_SPACE )
+        if( event.keyboard.keycode == ALLEGRO_KEY_SPACE ){
             to_inst = true;
+        }
 }
 void menu_draw(){
-    al_clear_to_color(al_map_rgb(100,100,100));
+    //al_clear_to_color(al_map_rgb(100,100,100));
+    al_draw_scaled_bitmap(back_menu, 0, 0, 570, 203,0,0,2500,HEIGHT,0);
     al_draw_text(font, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-75 , ALLEGRO_ALIGN_CENTRE, "Press 'Enter' to start");
     al_draw_text(font, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2 , ALLEGRO_ALIGN_CENTRE, "Press 'space' for instructions");
     al_draw_text(font, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2 +75 , ALLEGRO_ALIGN_CENTRE, "Press 'ESC' to quit");
@@ -41,7 +47,7 @@ void game_scene_draw(){
     al_flip_display();
 }
 void game_scene_update(){
-    if (x>=-1800&&key_state[ALLEGRO_KEY_D]) x -=6;
+    if (x>=-2000&&key_state[ALLEGRO_KEY_D]) x -=6;
     if (x<=0&&key_state[ALLEGRO_KEY_A]) x+=6;
 }
 void game_scene_destroy(){
@@ -71,14 +77,13 @@ void gg_destroy(){
 }
 
 void inst_init(){
-    //font = al_load_ttf_font("./font/pirulen.ttf",30,0);
+    font = al_load_ttf_font("./font/pirulen.ttf",30,0);
 }
 int inst_process(ALLEGRO_EVENT event){
     if( event.type == ALLEGRO_EVENT_KEY_UP )
         if( event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE){
             to_menu = true;
         }
-
 }
 void inst_draw(){
     al_clear_to_color(al_map_rgb(100,100,100));

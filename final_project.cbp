@@ -17,7 +17,6 @@
 				</Compiler>
 				<Linker>
 					<Add library="allegro/lib/liballegro_monolith-debug.dll.a" />
-					<Add library="allegro/lib/liballegro_monolith.dll.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -27,15 +26,18 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="allegro/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="allegro/lib/liballegro_monolith.dll.a" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="allegro/include" />
 		</Compiler>
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
